@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'books/index'
+
+  get 'books/show'
+
+  scope 'api/v1' do
+  # get 'api/v1/posts', controller: 'PostsController'
+    resources :books, only: [:index, :show]
+  end
+
+  api_for '/apidoc'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
