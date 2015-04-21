@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :comments
+  resources :likes
+  resources :places
   get 'books/index'
 
   get 'books/show'

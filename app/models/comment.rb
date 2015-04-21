@@ -1,14 +1,14 @@
 # == Schema Information
 #
-# Table name: books
+# Table name: comments
 #
 #  id         :integer          not null, primary key
-#  name       :string
-#  isbn       :string
-#  author     :string
+#  place_id   :integer
+#  content    :text  
+#  userId     :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Book < ActiveRecord::Base
+class Comment < ActiveRecord::Base
 end

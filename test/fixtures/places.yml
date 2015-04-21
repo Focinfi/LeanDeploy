@@ -1,0 +1,38 @@
+# == Schema Information
+#
+# Table name: places
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  description :text
+#  imgUrl      :string
+#  longtitude  :float
+#  latitude    :float
+#  intro       :string
+#  html        :text
+#  author      :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  imgUrl: MyString
+  longtitude: 
+  latitude: 
+  intro: MyString
+  html: MyText
+  author: MyString
+
+two:
+  name: MyString
+  description: MyText
+  imgUrl: MyString
+  longtitude: 
+  latitude: 
+  intro: MyString
+  html: MyText
+  author: MyString

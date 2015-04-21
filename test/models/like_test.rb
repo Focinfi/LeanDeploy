@@ -1,18 +1,17 @@
 # == Schema Information
 #
-# Table name: books
+# Table name: likes
 #
 #  id         :integer          not null, primary key
-#  name       :string
-#  isbn       :string
-#  author     :string
+#  place_id   :integer
+#  userId     :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 require 'test_helper'
 
-class BookTest < ActiveSupport::TestCase
+class LikeTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
