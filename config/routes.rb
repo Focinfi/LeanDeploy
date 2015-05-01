@@ -1,18 +1,11 @@
 Rails.application.routes.draw do
-  get 'places/index'
+  resource :places
 
-  get 'places/show'
-
-  get 'places/create'
-
-  get 'places/update'
+  get 'places/index' => 'places#index'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  root 'places#index'
+  root 'places#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

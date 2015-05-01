@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150430105445) do
+ActiveRecord::Schema.define(version: 20150501012151) do
 
-  create_table "html_urls", force: :cascade do |t|
+  create_table "html_descs", force: :cascade do |t|
     t.integer  "place_id",   limit: 4
-    t.string   "url",        limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.text     "html_doc",   limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
-  add_index "html_urls", ["place_id"], name: "index_html_urls_on_place_id", using: :btree
+  add_index "html_descs", ["place_id"], name: "index_html_descs_on_place_id", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.integer  "place_id",   limit: 4
@@ -36,9 +36,9 @@ ActiveRecord::Schema.define(version: 20150430105445) do
     t.float    "latitude",       limit: 24
     t.float    "longitude",      limit: 24
     t.string   "business_hours", limit: 255
-    t.text     "description",    limit: 65535
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.string   "description",    limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "places", ["business_hours"], name: "index_places_on_business_hours", using: :btree

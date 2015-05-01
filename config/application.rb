@@ -25,12 +25,13 @@ module Dumi
     
     config.generators do |g|
       g.test_framwork :rspec,
-      fixtures: true,
-      view_specs: false,
-      helper_specs: false,
-      routing_specs: false,
-      controller_specs: true,
-      request_specs: false
+        fixtures: true,
+        view_specs: false,
+        helper_specs: false,
+        routing_specs: false,
+        controller_specs: true,
+        request_specs: false
+      g.fixture_replacement :fixture, dir: "spec/fixtures"
     end
   end
 end

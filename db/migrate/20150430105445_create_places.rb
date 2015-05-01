@@ -5,7 +5,7 @@ class CreatePlaces < ActiveRecord::Migration
       t.float :latitude
       t.float :longitude
       t.string :business_hours
-      t.text :description
+      t.string :description
 
       t.timestamps null: false
     end

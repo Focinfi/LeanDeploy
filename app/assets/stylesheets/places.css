@@ -3,7 +3,7 @@
  * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
  * http://cssreset.com
  */
-html, body, div, span, applet, object, iframe,
+/*html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -23,7 +23,7 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline;
 }
-
+*/
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -475,16 +475,24 @@ a:hover, a:active {
   right: 0;
 }
 
+/* input */
+.input-group {
+  margin-bottom: 10px;
+}
 /* Place-editor */
 section#place-editor {
   border-top: none;
-		width: 90%;
 	margin: 20px auto;
 }
 section#place-editor .simditor {
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
 }
 
+/* Map Container*/
+#mapContainer {
+  height: 500px;
+  width: 100%;
+}
 /* Sidebar Page */
 section.page-sidebar {
   position: relative;

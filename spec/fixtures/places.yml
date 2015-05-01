@@ -1,0 +1,16 @@
+place_one:
+  name: 南邮图书馆
+  latitude: 32.111894
+  longitude: 118.9318
+  business_hours: 8:00-21:00
+  description: 书多，人也多。
+
+place_two:
+  name: 温暖的小屋
+  latitude: 32.111894
+  longitude: 118.9318
+  business_hours: 8:00-21:00
+  description: 静谧的小角落
+
+
+

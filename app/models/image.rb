@@ -10,4 +10,9 @@
 #
 
 class Image < ActiveRecord::Base
+  validates :url, presence: true
+  validates :url, allow_blank: false, format: {
+    with: /.+\.(png|gif|jpg)\z/i,
+    message: "must be a PNG, GIF or JPG image"
+  }
 end

@@ -1,0 +1,73 @@
+%div{ class: "container main-board" }
+  %h3 新建一个读书好地方 
+  = form_for @place do |f|
+    - if @place.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@place.errors.count, "error")} prohibited this product from being saved:"
+        %ul
+          - @place.errors.full_messages.each do |msg|
+            %li= msg
+    .row		
+      .col-md-6
+        %div{ class: "input-group input-group-lg" }
+          %span{ class: "input-group-addon" } 名字
+          = f.text_field :name, class: "form-control", placeholder: "读觅的名字", "aria-describedby" => "basic-addon1" 
+    .row
+      .col-md-4
+        %div{ class: "input-group input-group-lg" }
+          %span{ class: "input-group-addon" } 营业时间
+          = f.text_field :business_hours, class: "form-control", placeholder: "8:00-21:00", "aria-describedby" => "basic-addon1"
+      
+      .col-md-8
+        %div{ class: "input-group input-group-lg" }
+          %span{ class: "input-group-addon" } 简述
+          = f.text_field :description, class: "form-control", placeholder: "一句话描述", "aria-describedby" => "basic-addon1"
+    .row
+      .col-md-9
+        #mapContainer
+      .col-md-3
+        %div{ class: "input-group input-group-small" }
+          %span{ class: "input-group-addon" } 经度
+          = f.text_field :longitude, class: "form-control", placeholder: "经度", "aria-describedby" => "basic-addon1"
+
+        %div{ class: "input-group input-group-small" }
+          %span{ class: "input-group-addon" } 纬度
+          = f.text_field :latitude, class: "form-control", placeholder: "纬度", "aria-describedby" => "basic-addon1"
+
+      
+
+    = javascript_include_tag "http://webapi.amap.com/maps?v=1.3&key=c6a95218e5eaa7965f5c5083f062b2c4"
+    
+    :javascript
+      (function(exports){
+        var map = new AMap.Map('mapContainer', {
+           resizeEnable: true,
+          //rotateEnable: true,
+          //dragEnable: true,
+          //zoomEnable: true,
+          //设置可缩放的级别
+          zooms: [3,18],
+          //传入2D视图，设置中心点和缩放级别
+          view: new AMap.View2D({
+            center: new AMap.LngLat(118.931784, 32.111899),
+            zoom: 16
+          })
+        });    
+
+        //在地图中添加ToolBar插件
+        map.plugin(["AMap.ToolBar"],function(){   
+          toolBar = new AMap.ToolBar();
+          map.addControl(toolBar);    
+        });
+
+        //为地图注册click事件获取鼠标点击出的经纬度坐标
+        var clickEventListener=AMap.event.addListener(map,'click',function(e){
+          $("#place_longitude").val(e.lnglat.getLng());
+          $("#place_latitude").val(e.lnglat.getLat())  
+        }); 
+      })(window);
+
+    %section#place-editor
+      %textarea#place-html-doc{ name: "html_doc", :autofocus => "", "data-autosave" => "editor-content" }
+
+    = f.submit "保存", class: "btn btn-primary"
