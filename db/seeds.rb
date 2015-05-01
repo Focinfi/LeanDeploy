@@ -6,3 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# require "ffaker"
+
+# book = Book.create({name: "C programming", author: "Mr. Zhang", isbn: "2319821983"})
+# book = Book.create({name: "D programming", author: "Mr. Zhang", isbn: "2332121983"})

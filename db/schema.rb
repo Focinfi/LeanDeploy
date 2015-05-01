@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150501012151) do
 
   create_table "html_descs", force: :cascade do |t|
@@ -44,5 +45,4 @@ ActiveRecord::Schema.define(version: 20150501012151) do
   add_index "places", ["business_hours"], name: "index_places_on_business_hours", using: :btree
   add_index "places", ["latitude", "longitude"], name: "index_places_on_latitude_and_longitude", using: :btree
   add_index "places", ["name"], name: "index_places_on_name", using: :btree
-
 end

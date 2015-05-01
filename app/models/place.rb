@@ -18,6 +18,4 @@ class Place < ActiveRecord::Base
   
   validates :name, presence: true
   validates :latitude, :longitude, numericality: { greater_than_or_equal_to: 0.01 }
-  
-  
 end

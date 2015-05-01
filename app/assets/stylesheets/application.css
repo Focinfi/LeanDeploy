@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+<<<<<<< HEAD
 .active{
 	background-color: #eee;
 }
@@ -20,3 +21,5 @@
 .main-board{
   padding: 0 5%;	
 }
+=======
+>>>>>>> b7f7b50afb90b5c2c98eee9b561b30b5b4105590

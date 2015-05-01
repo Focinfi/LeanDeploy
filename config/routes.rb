@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resource :places
 
   get 'places/index' => 'places#index'
