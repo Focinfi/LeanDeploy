@@ -1,0 +1,43 @@
+= form_for @place do |f|
+  .row    
+    .col-md-6
+      %div{ class: "input-group input-group-lg" }
+        %span{ class: "input-group-addon" } 名字
+        = f.text_field :name, class: "form-control", placeholder: "读觅的名字", "aria-describedby" => "basic-addon1" 
+  .row
+    .col-md-4
+      %div{ class: "input-group input-group-lg" }
+        %span{ class: "input-group-addon" } 营业时间
+        = f.text_field :business_hours, class: "form-control", placeholder: "8:00-21:00", "aria-describedby" => "basic-addon1"
+    
+    .col-md-8
+      %div{ class: "input-group input-group-lg" }
+        %span{ class: "input-group-addon" } 简述
+        = f.text_field :description, class: "form-control", placeholder: "一句话描述", "aria-describedby" => "basic-addon1"
+  .row
+    .col-md-9
+      #mapContainer
+    .col-md-3
+      %div{ class: "input-group input-group-small" }
+        %span{ class: "input-group-addon" } 经度
+        = f.text_field :longitude, class: "form-control", placeholder: "经度", "aria-describedby" => "basic-addon1"
+
+      %div{ class: "input-group input-group-small" }
+        %span{ class: "input-group-addon" } 纬度
+        = f.text_field :latitude, class: "form-control", placeholder: "纬度", "aria-describedby" => "basic-addon1"
+
+      %div{ class: "panel panel-default" }
+        .panel-heading 点击选取文件可更换图片
+        .panel-body
+          %div{ class: "input-group input-group-small" }
+            = f.file_field :picture, id: "select-image"
+            = f.hidden_field :picture_cache 
+            -# %input{ type: "file", id: "select-image", name: "pictures", multiple: true }
+          #preview
+            = image_tag @place.picture.url
+
+  %section#place-editor
+    %textarea#place-html-doc{ name: "html_doc", :autofocus => "", "data-autosave" => "editor-content" } 
+      = @place.html_desc.html_doc
+
+  = f.submit "保存", class: "btn btn-primary"

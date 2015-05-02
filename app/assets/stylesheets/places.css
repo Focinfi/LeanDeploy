@@ -479,6 +479,7 @@ a:hover, a:active {
 .input-group {
   margin-bottom: 10px;
 }
+
 /* Place-editor */
 section#place-editor {
   border-top: none;
@@ -486,6 +487,51 @@ section#place-editor {
 }
 section#place-editor .simditor {
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Select-Image */
+.select-image {
+  width: 100%;
+  overflow: hidden;
+}
+
+#preview {
+  width: 90%;
+  height: 300px;
+  overflow: scroll;
+}
+
+#preview img {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+/* Panel */
+.place-panel img {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* List group */
+.places-list {
+  margin-top: 20px;
+}
+
+.places-list hr {
+  margin: 20px 0;
+}
+
+.places-list li {
+  padding-top: 10px;
+}
+
+.places-list a {
+  font-size: 25px;
+}
+
+.places-list form {
+  width: 80px;
+  float: right;
 }
 
 /* Map Container*/

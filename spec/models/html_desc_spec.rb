@@ -16,7 +16,7 @@ RSpec.describe HtmlDesc, :type => :model do
     expect(HtmlDesc.new(html_doc: "A nice place")).not_to be_valid
   end
   
-  it "invalid without html_doc" do
-    expect(HtmlDesc.new(place_id: 1)).not_to be_valid
-  end
+  # it "invalid without html_doc" do
+  #   expect(HtmlDesc.new(place_id: 1)).not_to be_valid
+  # end
 end

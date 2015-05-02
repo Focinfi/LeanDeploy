@@ -10,6 +10,7 @@
 #
 
 class Image < ActiveRecord::Base
+  belongs_to :place
   validates :url, presence: true
   validates :url, allow_blank: false, format: {
     with: /.+\.(png|gif|jpg)\z/i,

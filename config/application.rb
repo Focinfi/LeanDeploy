@@ -6,11 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-<<<<<<< HEAD
 module Dumi
-=======
-module Shorthair
->>>>>>> b7f7b50afb90b5c2c98eee9b561b30b5b4105590
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -26,8 +22,11 @@ module Shorthair
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-<<<<<<< HEAD
     
+    # Config errors css 
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| "#{html_tag}".html_safe }
+
+    # config test to use Rspec 
     config.generators do |g|
       g.test_framwork :rspec,
         fixtures: true,
@@ -38,7 +37,5 @@ module Shorthair
         request_specs: false
       g.fixture_replacement :fixture, dir: "spec/fixtures"
     end
-=======
->>>>>>> b7f7b50afb90b5c2c98eee9b561b30b5b4105590
   end
 end

@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
 
-  resource :places
-
-  get 'places/index' => 'places#index'
+  resources :places
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  root 'places#new'
+  root 'places#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

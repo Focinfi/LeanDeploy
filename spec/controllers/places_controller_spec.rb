@@ -3,17 +3,15 @@ require 'rails_helper'
 RSpec.describe PlacesController, :type => :controller do
   fixtures :places
   let(:valid_attributes) {
-    places(:place_one).attributes
+    places(:place_one).attributes.merge(id: 3)
   }
 
   let(:invalid_attributes) {
-    place = places(:place_one)
-    place.name = ""
-    place.attributes
+    places(:place_one).attributes.merge(name: "")
   }
 
   describe "Test Fixture" do
-    it ":valid_attributes is not empty" do
+    it "valid_attributes is not empty" do
       expect(valid_attributes["name"]).to eq "南邮图书馆"
     end
   end
@@ -32,25 +30,35 @@ RSpec.describe PlacesController, :type => :controller do
         }.to change(HtmlDesc, :count).by(1)
       end
 
-      it "creates a new Image Model when place is created passing image_urls" do        
-        # expect {
-        #   post :create, { place: valid_attributes, image_urls: ["i.png", "ii.png"] }
-        # }.to change(HtmlDesc, :count).by(2)
+      it "redirects to the created place" do
+        post :create, {:place => valid_attributes}
+        expect(response).to redirect_to(Place.last)
       end
-
-  #     it "redirects to the created product" do
-  #       post :create, {:product => valid_attributes}, valid_session
-  #       expect(response).to redirect_to(Product.last)
-  #     end
-  #   end
+    
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved product as @place" do
+      it "assigns a newly created but unsaved place as @place" do
         post :create, {:place => invalid_attributes}
         expect(assigns(:place)).to be_a_new(Place)
       end
     end
   end
-  
+
+  describe "PUT update" do
+    let(:new_attributes) {
+      places(:place_one).attributes.merge(name: "Coffye")
+    }
+
+    let(:place) {
+      places(:place_one)
+    }
+    describe "with valid params" do
+
+    end
+
+    describe "with invalid params" do
+    
+    end
+  end  
 end

@@ -10,5 +10,6 @@
 #
 
 class HtmlDesc < ActiveRecord::Base
-  validates :place_id, :html_doc, presence: true
+  belongs_to :place
+  validates :place_id, presence: true
 end
