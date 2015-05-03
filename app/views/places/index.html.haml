@@ -3,7 +3,7 @@
     %div{ class: "alert alert-success" } 
       = notice
   %ul{ class: "list-group places-list" }
-    = @places.each do |place|
+    - @places.each do |place|
       %li{ class: "list-group-item" }
         = link_to place.name, place
         = button_to "删除", place, method: :delete, class: "btn btn-danger", data: { confirm: "确定要删除吗？" }
@@ -11,7 +11,6 @@
         %hr
         %p= "营业时间：" + place.business_hours 
         %p= "简述：" + place.description
-
   = will_paginate @places
 
 

@@ -1,10 +1,25 @@
 Rails.application.routes.draw do
-
+  # routs
+  root 'places#index'
   resources :places
 
+  # api
+  api_for '/apidoc' 
+  
+  namespace :api do
+    scope :v1 do
+      resources :places, only: [:index, :show]
+    end
+  end
+
+  # rails-admin
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  root 'places#index'
+  # scope for different languages
+  # scope '(:locale)' do
+  #   resources :places
+  #   root 'places#index', via: :all
+  # end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

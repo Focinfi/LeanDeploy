@@ -510,6 +510,7 @@ section#place-editor .simditor {
 .place-panel img {
   width: 100%;
   overflow: hidden;
+  margin-bottom: 20px;
 }
 
 /* List group */
@@ -536,6 +537,7 @@ section#place-editor .simditor {
 
 /* Map Container*/
 #mapContainer {
+  margin-top: 10px;
   height: 500px;
   width: 100%;
 }

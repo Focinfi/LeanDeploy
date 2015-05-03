@@ -1,0 +1,20 @@
+activerecord:
+  errors:
+    messages:
+      blank: "无能为空"
+  models:
+    places: "地点"
+  attributes:
+    places:
+      name: "名字"
+      latitude: "纬度"
+      longitude: "经度"
+      business_hours: "营业时间段"
+      description: "简述"
+      pircture: "图片"
+
+errors:
+  template:
+    body: "还不能提交，请修改以下错误：" 
+    one: " %{model} 有一个错误。"
+    other: "%{model} 有 %{count} 个错误"

@@ -1,5 +1,5 @@
 .container
-  = if notice
+  - if notice
     %div{ class: "alert alert-success" } 
       = notice
   %div{ class: "panel panel-primary place-panel" }
@@ -8,7 +8,7 @@
       %p= @place.description
       %p= "营业时间：" + @place.business_hours
       = image_tag(@place.picture.url)
-      = @place.html_desc.html_doc.html_safe
+      = @place.html_doc.html_safe
       = hidden_field_tag "place_longitude", @place.longitude
       = hidden_field_tag "place_latitude", @place.latitude
       #mapContainer 

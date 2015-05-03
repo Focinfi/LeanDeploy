@@ -3,8 +3,8 @@
   - if @place.errors.any?
     #error_explanation
       %div{ class: "alert alert-danger" }
-        = "有#{pluralize(@place.errors.count, "error")}个错误，请重新提交"
+        = "有 #{ @place.errors.count } 个错误，请重新提交"
       %ul
-        - @place.errors.full_messages.each do |msg|
-          %li= msg
+        - @place.errors.messages.each do |msg|
+          %li= msg[1].join unless msg[1].blank?
   = render 'form'

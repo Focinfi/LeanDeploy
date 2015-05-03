@@ -31,17 +31,13 @@ RSpec.describe Place, :type => :model do
   it "invalid the name is blank" do 
     expect(Place.new(name: "")).not_to be_valid
   end
-  
-  it "invalid latitude or longitude < 0" do 
-    @place.latitude = -1.0
-    expect(@place).not_to be_valid
-    
-    @place.latitude = 0 
-    expect(@place).not_to be_valid
-    
-    @place.latitude = 1 
-    expect(@place).to be_valid
+
+  it "invalid without longitude or latitude" do
+    expect(Place.new(name: "Libray")).not_to be_valid
+    expect(Place.new(name: "Libray", latitude: 12)).not_to be_valid
+    expect(Place.new(name: "Libray", longitude: 123)).not_to be_valid
   end
+
 end
 
 

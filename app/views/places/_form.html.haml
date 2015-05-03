@@ -17,6 +17,7 @@
   .row
     .col-md-9
       #mapContainer
+        %p 地图加载中...
     .col-md-3
       %div{ class: "input-group input-group-small" }
         %span{ class: "input-group-addon" } 经度
@@ -38,6 +39,6 @@
 
   %section#place-editor
     %textarea#place-html-doc{ name: "html_doc", :autofocus => "", "data-autosave" => "editor-content" } 
-      = @place.html_desc.html_doc
+      = @place.html_doc
 
   = f.submit "保存", class: "btn btn-primary"

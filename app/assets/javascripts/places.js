@@ -1,9 +1,9 @@
 // = require mobilecheck
+// = require amap
 // = require module
 // = require hotkeys
 // require uploader
 // = require simditor
-// = require amap
 
 (function() {
   function preview(file) {
@@ -28,11 +28,18 @@
 
     var lon = $("#place_longitude").val();
     var lat = $("#place_latitude").val();
-    console.log(lon);
+ 
     //Default 南邮图书馆坐标
-    if(!lon) lon = 118.931784;
-    if(!lat) lat = 32.111899;
-    
+    if (!lon || !lat) { 
+      lon = 118.931784;
+      lat = 32.111899; 
+    } else if(lon && lat) {
+      lon = Number(lon);
+      lat = Number(lat);
+    }
+
+    console.log(lon);
+    console.log(lat);
     //map
     var map = new AMap.Map('mapContainer', {
       resizeEnable: true,
@@ -60,26 +67,26 @@
       $("#place_latitude").val(e.lnglat.getLat())  
     }); 
 
-    if(!$('#place-html-doc')) {
-      return
+    //Do not init simditor if no #place-html-doc
+    if ($('#place-html-doc').length > 0) {   
+      //init simditor 
+      var editor, mobileToolbar, toolbar;
+      toolbar = ['title', 'bold', 'italic', 'underline', 'color', '|', 'ol', 'ul', 'blockquote', '|', 'link', 'hr', '|', 'indent', 'outdent'];
+      mobileToolbar = ["bold", "underline", "color", "ul", "ol"];
+      if (mobilecheck()) {
+        toolbar = mobileToolbar;
+      }
+      
+      editor = new Simditor({
+        textarea: $('#place-html-doc'),
+        placeholder: '输入丰富多彩的介绍',
+        toolbar: toolbar,
+        pasteImage: true,
+        defaultImage: 'assets/images/library.png'
+        // upload: location.search === '?upload' ? {
+        //   url: '/upload'
+        // } : false
+      });
     }
-    //init simditor 
-    var editor, mobileToolbar, toolbar;
-    toolbar = ['title', 'bold', 'italic', 'underline', 'color', '|', 'ol', 'ul', 'blockquote', '|', 'link', 'hr', '|', 'indent', 'outdent'];
-    mobileToolbar = ["bold", "underline", "color", "ul", "ol"];
-    if (mobilecheck()) {
-      toolbar = mobileToolbar;
-    }
-    
-    editor = new Simditor({
-      textarea: $('#place-html-doc'),
-      placeholder: '输入丰富多彩的介绍',
-      toolbar: toolbar,
-      pasteImage: true,
-      defaultImage: 'assets/images/library.png'
-      // upload: location.search === '?upload' ? {
-      //   url: '/upload'
-      // } : false
-    });
   });
 }).call(this);
