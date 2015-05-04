@@ -8,6 +8,7 @@ class PlacesController < ApplicationController
   
   # GET /places/1
   def show
+    @place.update(view_times: @place.view_times + 1)
   end
   
   # GET /places/new
@@ -61,6 +62,6 @@ class PlacesController < ApplicationController
     end
     
     def place_params
-      params.require(:place).permit(:name, :latitude, :longitude, :business_hours, :description, :picture, :picture_cache)
+      params.require(:place).permit(:name, :latitude, :longitude, :business_hours, :description, :author, :picture, :picture_cache)
     end
 end

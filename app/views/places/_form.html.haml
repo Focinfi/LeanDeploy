@@ -3,7 +3,11 @@
     .col-md-6
       %div{ class: "input-group input-group-lg" }
         %span{ class: "input-group-addon" } 名字
-        = f.text_field :name, class: "form-control", placeholder: "读觅的名字", "aria-describedby" => "basic-addon1" 
+        = f.text_field :name, class: "form-control", placeholder: "读觅地点的名字", "aria-describedby" => "basic-addon1" 
+    .col-md-6
+      %div{ class: "input-group input-group-lg" }
+        %span{ class: "input-group-addon" } 作者
+        = f.text_field :author, class: "form-control", placeholder: "你的名字", "aria-describedby" => "basic-addon1" 
   .row
     .col-md-4
       %div{ class: "input-group input-group-lg" }

@@ -37,7 +37,7 @@ class Place < ActiveRecord::Base
   end
 
   def html_url
-    "places/#{id}"
+    "/places/#{id}"
   end
   
   private

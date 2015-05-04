@@ -71,7 +71,7 @@
     if ($('#place-html-doc').length > 0) {   
       //init simditor 
       var editor, mobileToolbar, toolbar;
-      toolbar = ['title', 'bold', 'italic', 'underline', 'color', '|', 'ol', 'ul', 'blockquote', '|', 'link', 'hr', '|', 'indent', 'outdent'];
+      toolbar = ['title', 'bold', 'italic', 'underline', 'color', '|', 'ol', 'ul', 'blockquote', '|', 'link', 'hr', 'image', '|', 'indent', 'outdent' ];
       mobileToolbar = ["bold", "underline", "color", "ul", "ol"];
       if (mobilecheck()) {
         toolbar = mobileToolbar;

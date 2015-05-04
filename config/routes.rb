@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # routs
   root 'places#index'
   resources :places
@@ -11,10 +12,7 @@ Rails.application.routes.draw do
       resources :places, only: [:index, :show]
     end
   end
-
-  # rails-admin
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-
+  
   # scope for different languages
   # scope '(:locale)' do
   #   resources :places
