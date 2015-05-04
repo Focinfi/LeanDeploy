@@ -1,6 +1,6 @@
 class PlacesController < ApplicationController
   before_action :set_place, only: [:show, :edit, :update, :destroy]
-  
+  layout 'simple_place', only: :show
   # GET /places
   def index
     @places = Place.paginate(page: params[:page]).order(created_at: :desc)

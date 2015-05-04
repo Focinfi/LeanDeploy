@@ -48,12 +48,13 @@
       //zoomEnable: true,
       //设置可缩放的级别
       zooms: [3,18],
+      icon: "http://cache.amap.com/lbs/static/0.png",
       //传入2D视图，设置中心点和缩放级别
       view: new AMap.View2D({
         center: new AMap.LngLat(lon, lat),
         zoom: 16
       })
-    });    
+    });   
 
     //在地图中添加ToolBar插件
     map.plugin(["AMap.ToolBar"],function(){   
@@ -64,29 +65,26 @@
     //为地图注册click事件获取鼠标点击出的经纬度坐标
     var clickEventListener=AMap.event.addListener(map,'click',function(e){
       $("#place_longitude").val(e.lnglat.getLng());
-      $("#place_latitude").val(e.lnglat.getLat())  
+      $("#place_latitude").val(e.lnglat.getLat());
     }); 
 
-    //Do not init simditor if no #place-html-doc
-    if ($('#place-html-doc').length > 0) {   
-      //init simditor 
-      var editor, mobileToolbar, toolbar;
-      toolbar = ['title', 'bold', 'italic', 'underline', 'color', '|', 'ol', 'ul', 'blockquote', '|', 'link', 'hr', 'image', '|', 'indent', 'outdent' ];
-      mobileToolbar = ["bold", "underline", "color", "ul", "ol"];
-      if (mobilecheck()) {
-        toolbar = mobileToolbar;
-      }
-      
-      editor = new Simditor({
-        textarea: $('#place-html-doc'),
-        placeholder: '输入丰富多彩的介绍',
-        toolbar: toolbar,
-        pasteImage: true,
-        defaultImage: 'assets/images/library.png'
-        // upload: location.search === '?upload' ? {
-        //   url: '/upload'
-        // } : false
-      });
+    //init simditor 
+    var editor, mobileToolbar, toolbar;
+    toolbar = ['title', 'bold', 'italic', 'underline', 'color', '|', 'ol', 'ul', 'blockquote', '|', 'link', 'hr', 'image', '|', 'indent', 'outdent' ];
+    mobileToolbar = ["bold", "underline", "color", "ul", "ol"];
+    if (mobilecheck()) {
+      toolbar = mobileToolbar;
     }
+    
+    editor = new Simditor({
+      textarea: $('#place-html-doc'),
+      placeholder: '输入丰富多彩的介绍',
+      toolbar: toolbar,
+      pasteImage: true,
+      defaultImage: 'assets/images/library.png'
+      // upload: location.search === '?upload' ? {
+      //   url: '/upload'
+      // } : false
+    });
   });
 }).call(this);
