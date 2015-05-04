@@ -11,6 +11,8 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  picture        :string(255)
+#  view_times     :integer          default(0)
+#  author         :string(255)      default("读觅小编")
 #
 
 require 'rails_helper'

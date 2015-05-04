@@ -27,6 +27,9 @@ class Api::PlacesController < Lina::ApplicationController
         name: {
           type: 'string'
         },
+        category: {
+          type: 'string'
+        },
         latitude: {
           type: 'number',
           description: '纬度'
@@ -39,14 +42,16 @@ class Api::PlacesController < Lina::ApplicationController
           type: 'string',
           description: '营业时间段'
         },
-        view_times: {
-          type: "integer",
-          description: "阅读次数"
-        },
         description: {
           type: 'string'
         },
-        picture_url: {
+        picture_01_url: {
+          type: 'string'
+        },
+        picture_02_url: {
+          type: 'string'
+        },
+        picture_03_url: {
           type: 'string'
         },
         html_url: {
@@ -104,10 +109,6 @@ class Api::PlacesController < Lina::ApplicationController
         name: {
           type: 'string'
         },
-        author: {
-          type: 'string',
-          description: '作者'
-        },
         latitude: {
           type: 'number',
           description: '纬度'
@@ -119,10 +120,6 @@ class Api::PlacesController < Lina::ApplicationController
         business_hours: {
           type: 'string',
           description: '营业时间段'
-        },
-        view_times: {
-          type: 'integer',
-          description: '阅读次数'
         },
         description: {
           type: 'string'

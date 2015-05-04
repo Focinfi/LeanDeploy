@@ -11,11 +11,14 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  picture        :string(255)
+#  view_times     :integer          default(0)
+#  author         :string(255)      default("读觅小编")
 #
 
 require 'carrierwave/orm/activerecord'
 
 class Place < ActiveRecord::Base
+  CATEGORY_TYPES = %w{ 图书馆 咖啡馆 书店 户外 大学 其他 }
   has_many :images, dependent: :destroy
   has_one :html_desc, dependent: :destroy
   # mount_uploaders :pictures, PictureUploader
@@ -25,6 +28,7 @@ class Place < ActiveRecord::Base
   validates_presence_of :name, message: "请填写读觅地点名字"
   validates_presence_of :longitude, message: "请点击地图来填写坐标"
   validates_presence_of :latitude, message: ""
+  validates_inclusion_of :category, in: CATEGORY_TYPES
 
   after_destroy :delete_its_relative_res
 
@@ -38,6 +42,22 @@ class Place < ActiveRecord::Base
 
   def html_url
     "/places/#{id}"
+  end
+
+  def temp_image_url
+    "http://www.zhangxinxu.com/study/201109/uploads/library.jpeg"
+  end
+
+  def picture_01_url
+    temp_image_url
+  end
+
+  def picture_02_url
+    temp_image_url
+  end
+
+  def picture_03_url
+    temp_image_url
   end
   
   private
