@@ -29,17 +29,16 @@ end
                  longitude: "118.932",
                  business_hours: "8:00-21:00",
                  description: FFaker::Lorem.sentence,
-                 picture: nil,
                  category: category
               })
   HtmlDesc.create({ place_id: place.id, 
     html_doc: 
-      "<h3>#{FFaker::Lorem.sentence}<h3>" +
+      "<h3>#{FFaker::Lorem.sentence}</h3>" +
       "<img src='http://www.zhangxinxu.com/study/201109/uploads/library.jpeg'>" +
       "<p>#{FFaker::Lorem.paragraph}</p>"
       })
 
-  Image.create({ place_id: place.id, url: "place_example.png"})
+  # Image.create({ place_id: place.id, url: "place_example.png"})
 end
 
 

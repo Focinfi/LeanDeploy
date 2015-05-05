@@ -60,9 +60,9 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
-    carrierwave-aliyun (0.3.4)
-      carrierwave (>= 0.5.7)
-      rest-client (>= 1.6.7)
+    carrierwave-qiniu (0.1.8)
+      carrierwave
+      qiniu (~> 6.4.2)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -291,7 +291,7 @@ DEPENDENCIES
   bootstrap-will_paginate (~> 0.0.10)
   byebug
   carrierwave
-  carrierwave-aliyun
+  carrierwave-qiniu (~> 0.1.8)
   coffee-rails (~> 4.1.0)
   ffaker
   haml-rails (~> 0.9.0)
@@ -304,7 +304,6 @@ DEPENDENCIES
   mysql2
   pry-rails
   puma
-  qiniu (~> 6.4.1)
   quiet_assets
   rails (= 4.2.1)
   rails_admin (~> 0.6.6)

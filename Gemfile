@@ -52,10 +52,11 @@ gem 'mina', group: :development
 gem 'mini_magick'
 
 gem 'carrierwave'
-gem 'carrierwave-aliyun'
+# gem 'carrierwave-aliyun'
 
-gem 'qiniu', '~> 6.4.1'
+# gem 'qiniu', '~> 6.4.1'
 
+gem 'carrierwave-qiniu', '~> 0.1.8'
 # Mock Data
 gem 'ffaker'
 
