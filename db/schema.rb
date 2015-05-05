@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150504030707) do
+ActiveRecord::Schema.define(version: 20150505072845) do
 
   create_table "html_descs", force: :cascade do |t|
     t.integer  "place_id",   limit: 4
@@ -39,9 +39,12 @@ ActiveRecord::Schema.define(version: 20150504030707) do
     t.string   "description",    limit: 255
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
-    t.string   "picture",        limit: 255
+    t.string   "picture_01",     limit: 255
     t.integer  "view_times",     limit: 4,   default: 0
     t.string   "author",         limit: 255, default: "读觅小编"
+    t.string   "category",       limit: 255
+    t.string   "picture_02",     limit: 255
+    t.string   "picture_03",     limit: 255
   end
 
   add_index "places", ["business_hours"], name: "index_places_on_business_hours", using: :btree

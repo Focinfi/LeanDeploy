@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   # routs
   root 'places#index'
   resources :places
+  
+  resources :html_desc, only: [:edit, :update]
+
 
   # api
   api_for '/apidoc' 

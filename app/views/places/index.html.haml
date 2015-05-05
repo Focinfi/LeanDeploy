@@ -1,11 +1,13 @@
 .container
-  = if notice
+  - if notice
     %div{ class: "alert alert-success" } 
       = notice
   %ul{ class: "list-group places-list" }
     - @places.each do |place|
       %li{ class: "list-group-item" }
         = link_to place.name, place
+        %span{ class: "label label-info" } 
+          = place.category
         = button_to "删除", place, method: :delete, class: "btn btn-danger", data: { confirm: "确定要删除吗？" }
         = button_to "编辑", edit_place_path(place), method: :get, class: "btn btn-primary btn-small"
         %hr
