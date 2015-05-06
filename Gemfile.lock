@@ -142,7 +142,6 @@ GEM
     mini_portile (0.6.2)
     minitest (5.6.0)
     multi_json (1.11.0)
-    mysql2 (0.3.17)
     nested_form (0.3.2)
     netrc (0.10.3)
     nokogiri (1.6.6.2)
@@ -257,6 +256,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    sqlite3 (1.3.10)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
@@ -301,7 +301,6 @@ DEPENDENCIES
   lina
   mina
   mini_magick
-  mysql2
   pry-rails
   puma
   quiet_assets
@@ -314,6 +313,7 @@ DEPENDENCIES
   settingslogic
   sextant
   spring
+  sqlite3
   therubyracer
   turbolinks
   twitter-bootstrap-rails (~> 3.2.0)
