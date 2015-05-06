@@ -85,69 +85,6 @@ class Api::PlacesController < Lina::ApplicationController
       end
     end
 
-  define_action :show, {
-    name: '请求读觅一个Place详情',
-    description: '传入一个ID, 显示这个Place的信息',
-    params: {
-      type: 'object',
-      required: [ :id ],
-      properties: {
-        id: {
-          type: 'string',
-          description: 'Place id'
-        }
-      }
-    },
-    return: {
-      name: "显示读觅Place详情",
-      description: '',
-      type: 'object',
-      properties: {
-        id: {
-          type: 'integer'
-        },
-        name: {
-          type: 'string'
-        },
-        latitude: {
-          type: 'number',
-          description: '纬度'
-        },
-        longitude: {
-          type: 'number',
-          description: '经度'
-        },
-        business_hours: {
-          type: 'string',
-          description: '营业时间段'
-        },
-        description: {
-          type: 'string'
-        },
-        picture_url: {
-          type: 'string'
-        },
-        created_at: {
-          type: 'string'
-        },
-        html_url: {
-          type: 'string',
-          description: "host ip 与API相同，此字段为uri"
-        }
-      }
-    }
-    } do
-      # handle invalid params[:id]
-      id = params[:id]
-      begin
-        Integer(id) if id
-      rescue Exception
-        render json: { error: "用户ID不是数字字符串" }, status: 400
-        return
-      end
-      @place = Place.find_by_id id
-    end
-
   define_action :create, {
     name: '提交一个新的读觅地点',
     description: '传入一些信息，新建一个读觅地点',

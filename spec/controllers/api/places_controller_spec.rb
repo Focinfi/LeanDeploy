@@ -23,14 +23,6 @@ RSpec.describe Api::PlacesController, :type => :controller do
     end
   end
 
-  describe "api for one place" do
-    it "raise return error" do 
-      expect {
-       get :show, id: "1"
-       }.to raise_error(Lina::ReturnCheckError)   
-    end
-  end
-
   describe "api for create one place" do
     it "raise params error if params is lack of required-params" do
       expect {
