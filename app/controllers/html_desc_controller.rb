@@ -7,8 +7,6 @@ class HtmlDescController < ApplicationController
     # render json: params
     @html_desc = HtmlDesc.find(params[:id])
     @place = Place.find(@html_desc.place_id)
-    # @html_desc = @place.html_desc || @place.create_html_desc
-    # @html_desc = HtmlDesc.find(params[:id])
   end
 
   def update

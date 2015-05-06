@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   
   namespace :api do
     scope :v1 do
-      resources :places, only: [:index, :show]
+      resources :places, only: [:create, :index, :show]
     end
   end
   

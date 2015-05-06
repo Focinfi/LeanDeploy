@@ -22,6 +22,7 @@ place_one:
   longitude: 118.9318
   business_hours: 8:00-21:00
   description: 书多，人也多。
+  category: 图书馆
 
 place_two:
   name: 温暖的小屋
@@ -29,6 +30,7 @@ place_two:
   longitude: 118.9318
   business_hours: 8:00-21:00
   description: 静谧的小角落
+  category: 咖啡店
 
 
 

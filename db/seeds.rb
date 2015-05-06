@@ -21,7 +21,7 @@ require "ffaker"
 # book = Book.create({name: "C programming", author: "Mr. Zhang", isbn: "2319821983"})
 # book = Book.create({name: "D programming", author: "Mr. Zhang", isbn: "2332121983"})
 def category
-  %w{ 图书馆 咖啡馆 书店 户外 大学 其他 }.fetch rand(0..5)
+  Place::CATEGORY_TYPES.fetch rand(5)
 end
 50.times do
   place = Place.create({ name: FFaker::Name.name,
