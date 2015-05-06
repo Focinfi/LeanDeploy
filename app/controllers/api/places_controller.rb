@@ -107,11 +107,11 @@ class Api::PlacesController < Lina::ApplicationController
         },
 
         latitude: {
-          type: 'number'
+          type: 'string'
         },
 
         longitude: {
-          type: 'number'
+          type: 'string'
         },
 
         category: {
@@ -138,7 +138,7 @@ class Api::PlacesController < Lina::ApplicationController
     return: {
       name: "反馈新建结果",
       type: 'object',
-      required: [ :type ],
+      required: [ :created ],
       properties: {
         created: {
           type: 'boolean'
@@ -146,10 +146,17 @@ class Api::PlacesController < Lina::ApplicationController
       }
     }
     } do
-      if Place.new(params).save
+      # render json: { type: params.to_s }
+      if Place.new(place_params).save
         render json: { created: true }, status: 201
       else
         render json: { created: false }, status: 400
       end
     end
+
+  private
+  def place_params
+    params.permit(:name, :latitude, :longitude, :business_hours, 
+        :description, :author, :category, :picture_01, :picture_02, :picture_03)
+  end
 end
