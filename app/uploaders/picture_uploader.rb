@@ -20,7 +20,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
   #
     # "/images/fallback/" + [version_name, "default.png"].compact.join('_')
-    "/images/place_example.png"
+    "http://42.96.137.114:1234/images/place_example.png"
   end
 
   # Process files as they are uploaded:
