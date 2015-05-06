@@ -1,0 +1,13 @@
+# config/application.yml
+defaults: &defaults
+  pagination:
+    places_per_page: 10
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

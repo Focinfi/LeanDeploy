@@ -40,7 +40,7 @@ gem 'bootstrap-will_paginate', '~> 0.0.10'
 # gem 'bcrypt', '~> 3.1.7'
 
 # HTTP Reqeust
-gem 'rest-client'
+gem 'rest-client', '~> 1.7.3'
 
 # App Server Puma 
 gem 'puma'
@@ -52,8 +52,11 @@ gem 'mina', group: :development
 gem 'mini_magick'
 
 gem 'carrierwave'
-gem 'carrierwave-aliyun'
+# gem 'carrierwave-aliyun'
 
+# gem 'qiniu', '~> 6.4.1'
+
+gem 'carrierwave-qiniu', '~> 0.1.8'
 # Mock Data
 gem 'ffaker'
 

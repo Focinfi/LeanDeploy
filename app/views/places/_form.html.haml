@@ -1,13 +1,16 @@
 = form_for @place do |f|
   .row    
-    .col-md-6
+    .col-md-4
       %div{ class: "input-group input-group-lg" }
         %span{ class: "input-group-addon" } 名字
         = f.text_field :name, class: "form-control", placeholder: "读觅地点的名字", "aria-describedby" => "basic-addon1" 
-    .col-md-6
+    .col-md-4
       %div{ class: "input-group input-group-lg" }
         %span{ class: "input-group-addon" } 作者
         = f.text_field :author, class: "form-control", placeholder: "你的名字", "aria-describedby" => "basic-addon1" 
+    .col-md-4
+      %div{ class: "form-group form-group-lg" }
+        = f.select :category, Place::CATEGORY_TYPES, {}, class: "form-control"
   .row
     .col-md-4
       %div{ class: "input-group input-group-lg" }
@@ -31,18 +34,35 @@
         %span{ class: "input-group-addon" } 纬度
         = f.text_field :latitude, class: "form-control", placeholder: "纬度", "aria-describedby" => "basic-addon1"
 
-      %div{ class: "panel panel-default" }
-        .panel-heading 点击选取文件可更换图片
+  %div{ class: "row place-panel" }
+    .col-md-4
+      %div{ class: "panel panel-primary" }
+        .panel-heading 读觅图片 1
         .panel-body
           %div{ class: "input-group input-group-small" }
-            = f.file_field :picture, id: "select-image"
-            = f.hidden_field :picture_cache 
-            -# %input{ type: "file", id: "select-image", name: "pictures", multiple: true }
-          #preview
-            = image_tag @place.picture.url
-
-  %section#place-editor
-    %textarea#place-html-doc{ name: "html_doc", :autofocus => "", "data-autosave" => "editor-content" } 
-      = @place.html_doc
+            = f.file_field :picture_01, id: "select-image-1"
+            -# = f.hidden_field :picture_01_cache 
+          #preview-1
+            = image_tag @place.picture_01_url
+        .panel-footer 可以上传或更改图片
+    .col-md-4
+      %div{ class: "panel panel-primary" }
+        .panel-heading 读觅图片 2
+        .panel-body
+          %div{ class: "input-group input-group-small" }
+            = f.file_field :picture_02, id: "select-image-2"
+          #preview-2
+            = image_tag @place.picture_02_url
+        .panel-footer 可以上传或更改图片
+    .col-md-4
+      %div{ class: "panel panel-primary" }
+        .panel-heading 读觅图片 3
+        .panel-body
+          %div{ class: "input-group input-group-small" }
+            = f.file_field :picture_03, id: "select-image-3"
+          #preview-3
+            = image_tag @place.picture_03_url
+        .panel-footer 可以上传或更改图片
+    
 
   = f.submit "保存", class: "btn btn-primary"

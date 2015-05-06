@@ -1,9 +1,8 @@
 json.array! @places do |place|
   json.extract! place, 
-    :id, :name, :longitude, :latitude, 
-    :business_hours, :description, :view_times
+    :id, :name, :longitude, :latitude, :category,
+    :business_hours, :description, :picture_01_url, :picture_02_url, :picture_03_url
   json.created_at  place.created_at.to_date
-  json.picture_url place.picture.url
   json.html_url place.html_url
 
 end
