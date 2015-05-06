@@ -19,10 +19,10 @@ class PlacesController < ApplicationController
   # POST /places
   def create
     @place = Place.new(place_params)
-
+    @html_desc =  @place.build_html_desc(html_doc: params[:html_doc])
     if @place.save
-      unless @place.build_html_desc(html_doc: params[:html_doc]).save
-        redirect_to new_places_path
+      unless @html_desc.save
+        redirect_to edit_place_html_desc_path(@html_desc)
         return
       end
 
@@ -42,9 +42,11 @@ class PlacesController < ApplicationController
 
   # PATCH/PUT /places/1
   def update
-    place_params[:picture] ||= @place.picture
-    if @place.update(place_params) && @place.html_desc.update(html_doc: params[:html_doc])
-      redirect_to @place, notice: "更新成功"
+    # render json: @place.remove_all_picture(place_params)
+    # return 
+    @place.remove_all_picture(place_params)
+    if @place.update(place_params)
+      redirect_to edit_html_desc_path(@place.html_desc), notice: "更新成功，可以继续更新详细内容"
     else
       render :edit
     end
@@ -62,6 +64,7 @@ class PlacesController < ApplicationController
     end
     
     def place_params
-      params.require(:place).permit(:name, :latitude, :longitude, :business_hours, :description, :author, :picture, :picture_cache)
+      params.require(:place).permit(:name, :latitude, :longitude, :business_hours, 
+        :description, :author, :category, :picture_01, :picture_02, :picture_03)
     end
 end

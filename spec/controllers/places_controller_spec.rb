@@ -59,7 +59,7 @@ RSpec.describe PlacesController, :type => :controller do
   
   describe "DELETE destroy" do
     before :each do 
-      @place = Place.create!(name: "Lib", longitude: 123, latitude: 21) 
+      @place = Place.create!(name: "Lib", longitude: 123, latitude: 21, category: "图书馆") 
     end
     it "delete a place model" do
       delete :destroy, {id: @place.to_param}

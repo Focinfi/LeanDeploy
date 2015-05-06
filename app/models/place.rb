@@ -13,6 +13,7 @@
 #  picture        :string(255)
 #  view_times     :integer          default(0)
 #  author         :string(255)      default("读觅小编")
+#  category       :string(255)
 #
 
 require 'carrierwave/orm/activerecord'
@@ -22,10 +23,13 @@ class Place < ActiveRecord::Base
   has_many :images, dependent: :destroy
   has_one :html_desc, dependent: :destroy
   # mount_uploaders :pictures, PictureUploader
-  mount_uploader :picture, PictureUploader
+  mount_uploader :picture_01, PictureUploader
+  mount_uploader :picture_02, PictureUploader
+  mount_uploader :picture_03, PictureUploader
   self.per_page = 10
 
   validates_presence_of :name, message: "请填写读觅地点名字"
+  # validates_presence_of :picture_01, message: "请上传读觅图片01"
   validates_presence_of :longitude, message: "请点击地图来填写坐标"
   validates_presence_of :latitude, message: ""
   validates_inclusion_of :category, in: CATEGORY_TYPES
@@ -34,7 +38,7 @@ class Place < ActiveRecord::Base
 
   def html_doc
     if html_desc
-      html_desc.html_doc
+      html_desc.html_doc || "<p>一个适合读书的地方</p>"
     else
       "<p>一个适合读书的地方</p>" 
     end
@@ -44,20 +48,32 @@ class Place < ActiveRecord::Base
     "/places/#{id}"
   end
 
+  def picture_urls
+    [picture_01_url ,picture_02_url, picture_03_url]
+  end
+
   def temp_image_url
     "http://www.zhangxinxu.com/study/201109/uploads/library.jpeg"
   end
 
   def picture_01_url
-    temp_image_url
+    picture_01.url
   end
 
   def picture_02_url
-    temp_image_url
+    picture_02.url
   end
 
   def picture_03_url
-    temp_image_url
+    picture_03.url
+  end
+
+  def remove_all_picture(params)
+    # params[:picture_01].to_s
+    # picture_01?
+    remove_picture_01! if picture_01? && params[:picture_01]
+    remove_picture_02! if picture_02? && params[:picture_02]
+    remove_picture_03! if picture_03? && params[:picture_03]
   end
   
   private

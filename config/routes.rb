@@ -3,13 +3,16 @@ Rails.application.routes.draw do
   # routs
   root 'places#index'
   resources :places
+  
+  resources :html_desc, only: [:edit, :update]
+
 
   # api
   api_for '/apidoc' 
   
   namespace :api do
     scope :v1 do
-      resources :places, only: [:index, :show]
+      resources :places, only: [:create, :index, :show]
     end
   end
   

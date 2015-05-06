@@ -2,6 +2,7 @@
   - if notice
     %div{ class: "alert alert-success" } 
       = notice
-  %div{ class: "" }
+  %div
     %h2= @place.name   
     = @place.html_doc.html_safe
+    -# = @place.html_desc

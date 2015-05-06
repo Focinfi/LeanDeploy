@@ -1,29 +1,32 @@
-// = require mobilecheck
 // = require amap
-// = require module
-// = require hotkeys
-// require uploader
-// = require simditor
-
 (function() {
-  function preview(file) {
+  function preview(file, index) {
     var img = new Image(), url = img.src = URL.createObjectURL(file)
     var $img = $(img)
     img.onload = function() {
       URL.revokeObjectURL(url)
-      $('#preview').append($img)
+      $('#preview-' + index).empty().append($img)
    }
   }
   $(function() {
     //#select-image change listener
-    $('#select-image').change(function(e) {
+    $('#select-image-1').change(function(e) {
       console.log("change");
       $('#preview').empty();
-      for(var i = 0; i < e.target.files.length; i++) {
-         var file = e.target.files[i]
-         console.log("file change");
-         preview(file)
-      }
+      e.target.files[0];
+      preview(e.target.files[0], 1);
+    });
+    $('#select-image-2').change(function(e) {
+      console.log("change");
+      $('#preview').empty();
+      e.target.files[0];
+      preview(e.target.files[0], 2);
+    });
+    $('#select-image-3').change(function(e) {
+      console.log("change");
+      $('#preview').empty();
+      e.target.files[0];
+      preview(e.target.files[0], 3);
     });
 
     var lon = $("#place_longitude").val();
@@ -67,24 +70,5 @@
       $("#place_longitude").val(e.lnglat.getLng());
       $("#place_latitude").val(e.lnglat.getLat());
     }); 
-
-    //init simditor 
-    var editor, mobileToolbar, toolbar;
-    toolbar = ['title', 'bold', 'italic', 'underline', 'color', '|', 'ol', 'ul', 'blockquote', '|', 'link', 'hr', 'image', '|', 'indent', 'outdent' ];
-    mobileToolbar = ["bold", "underline", "color", "ul", "ol"];
-    if (mobilecheck()) {
-      toolbar = mobileToolbar;
-    }
-    
-    editor = new Simditor({
-      textarea: $('#place-html-doc'),
-      placeholder: '输入丰富多彩的介绍',
-      toolbar: toolbar,
-      pasteImage: true,
-      defaultImage: 'assets/images/library.png'
-      // upload: location.search === '?upload' ? {
-      //   url: '/upload'
-      // } : false
-    });
   });
 }).call(this);

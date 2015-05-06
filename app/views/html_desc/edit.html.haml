@@ -1,0 +1,19 @@
+.container
+  %h3 
+    = "为 " + @place.name + " 添加详细描述"
+  .row
+    - @place.picture_urls.each_with_index do |picture_url, index|
+      .col-md-4
+        %div{ class: "panel panel-primary" }
+          .panel-heading 
+            = "可用图片 #{ index + 1 }"
+          .panel-body
+            = image_tag picture_url
+            %p{ id: "url-copy-1" }
+              = picture_url
+  %div{ class: "alert alert-success" } 上面的图片链接可以用在下面的详情编辑中
+  = form_for @html_desc do |f|
+    %section#place-editor
+      %textarea#place-html-doc{ name: "html_desc[html_doc]", :autofocus => "", "data-autosave" => "editor-content" } 
+        = @html_desc.html_doc
+    = f.submit "保存", class: "btn btn-primary"

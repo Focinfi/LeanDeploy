@@ -147,4 +147,72 @@ class Api::PlacesController < Lina::ApplicationController
       end
       @place = Place.find_by_id id
     end
+
+  define_action :create, {
+    name: '提交一个新的读觅地点',
+    description: '传入一些信息，新建一个读觅地点',
+    params: {
+      type: 'object',
+      required: [ :name, :latitude, :longitude, :category ],
+      properties: {
+        name: {
+          type: 'string'
+        },
+
+        business_hours: {
+          type: 'string',
+          description: '营业时间'
+        },
+
+        description: {
+          type: 'string',
+          description: '地点简介'
+        },
+
+        latitude: {
+          type: 'number'
+        },
+
+        longitude: {
+          type: 'number'
+        },
+
+        category: {
+          type: 'string',
+          enum: Place::CATEGORY_TYPES
+        }, 
+
+        picure_01: {
+          type: 'object',
+          description: '第一张图片'
+        },
+
+        picure_02: {
+          type: 'object',
+          description: '第一张图片'
+        },
+
+        picure_03: {
+          type: 'object',
+          description: '第三张图片'
+        }
+      }
+    },
+    return: {
+      name: "反馈新建结果",
+      type: 'object',
+      required: [ :type ],
+      properties: {
+        created: {
+          type: 'boolean'
+        }
+      }
+    }
+    } do
+      if Place.new(params).save
+        render json: { created: true }, status: 201
+      else
+        render json: { created: false }, status: 400
+      end
+    end
 end
