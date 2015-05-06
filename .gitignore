@@ -19,3 +19,6 @@
 # Ignore public/images/*
 /public/public/images/*
 /public/uploads/tmp/*
+
+# Ignore .out
+/*.out

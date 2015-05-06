@@ -14,39 +14,39 @@
 ActiveRecord::Schema.define(version: 20150504114813) do
 
   create_table "html_descs", force: :cascade do |t|
-    t.integer  "place_id",   limit: 4
-    t.text     "html_doc",   limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "place_id"
+    t.text     "html_doc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "html_descs", ["place_id"], name: "index_html_descs_on_place_id", using: :btree
+  add_index "html_descs", ["place_id"], name: "index_html_descs_on_place_id"
 
   create_table "images", force: :cascade do |t|
-    t.integer  "place_id",   limit: 4
-    t.string   "url",        limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "place_id"
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "images", ["place_id"], name: "index_images_on_place_id", using: :btree
+  add_index "images", ["place_id"], name: "index_images_on_place_id"
 
   create_table "places", force: :cascade do |t|
-    t.string   "name",           limit: 255
-    t.float    "latitude",       limit: 24
-    t.float    "longitude",      limit: 24
-    t.string   "business_hours", limit: 255
-    t.string   "description",    limit: 255
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-    t.string   "picture",        limit: 255
-    t.integer  "view_times",     limit: 4,   default: 0
-    t.string   "author",         limit: 255, default: "读觅小编"
-    t.string   "category",       limit: 255
+    t.string   "name"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "business_hours"
+    t.string   "description"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "picture"
+    t.integer  "view_times",     default: 0
+    t.string   "author",         default: "读觅小编"
+    t.string   "category"
   end
 
-  add_index "places", ["business_hours"], name: "index_places_on_business_hours", using: :btree
-  add_index "places", ["latitude", "longitude"], name: "index_places_on_latitude_and_longitude", using: :btree
-  add_index "places", ["name"], name: "index_places_on_name", using: :btree
+  add_index "places", ["business_hours"], name: "index_places_on_business_hours"
+  add_index "places", ["latitude", "longitude"], name: "index_places_on_latitude_and_longitude"
+  add_index "places", ["name"], name: "index_places_on_name"
 
 end
