@@ -158,6 +158,5 @@ class Api::PlacesController < Lina::ApplicationController
   def place_params
     params.permit(:name, :latitude, :longitude, :business_hours, 
         :description, :author, :category, :picture_01, :picture_02, :picture_03)
-    
   end
 end
