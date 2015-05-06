@@ -18,6 +18,9 @@ class PlacesController < ApplicationController
 
   # POST /places
   def create
+    render json: place_params.to_s
+    
+    return
     @place = Place.new(place_params)
     @html_desc =  @place.build_html_desc(html_doc: params[:html_doc])
     if @place.save
