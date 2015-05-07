@@ -72,7 +72,7 @@ class Api::PlacesController < Lina::ApplicationController
         Integer(page) if page
         Integer(per_page) if per_page
       rescue Exception
-        render json: [{ error: "page或per_page参数不是数字字符串" }], status: 400
+        render json: { error: "page或per_page参数不是数字字符串", status: "400" }
         return
       end
 
@@ -148,10 +148,17 @@ class Api::PlacesController < Lina::ApplicationController
     } do
       # render json: { type: params.to_s }
       if Place.new(place_params).save
-        render json: { created: true }, status: 201
+        render json: { created: true, status: "200" }
       else
-        render json: { created: false }, status: 400
+        render json: { created: false, status: "400" }
       end
+      # begin
+      #   place = Place.new(place_params)
+      # rescue Lina::ParamsCheckError
+      #   render json: { created: false, status: 400 }        
+      # end
+
+
     end
 
   private
