@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150505072845) do
+ActiveRecord::Schema.define(version: 20150507103722) do
 
   create_table "html_descs", force: :cascade do |t|
     t.integer  "place_id"
@@ -33,18 +33,21 @@ ActiveRecord::Schema.define(version: 20150505072845) do
 
   create_table "places", force: :cascade do |t|
     t.string   "name",           limit: 255
-    t.float    "latitude",       limit: 24
-    t.float    "longitude",      limit: 24
+    t.string   "latitude",       limit: 255,   default: "32.1119"
+    t.string   "longitude",      limit: 255,   default: "118.932"
     t.string   "business_hours", limit: 255
     t.string   "description",    limit: 255
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.string   "picture_01",     limit: 255
-    t.integer  "view_times",     limit: 4,   default: 0
-    t.string   "author",         limit: 255, default: "读觅小编"
+    t.integer  "view_times",     limit: 4,     default: 0
+    t.string   "author",         limit: 255,   default: "读觅小编"
     t.string   "category",       limit: 255
     t.string   "picture_02",     limit: 255
     t.string   "picture_03",     limit: 255
+    t.string   "flag",           limit: 255,   default: "rich"
+    t.text     "address",        limit: 65535
+    t.text     "contact",        limit: 65535
   end
 
   add_index "places", ["business_hours"], name: "index_places_on_business_hours"

@@ -10,10 +10,15 @@
 #  description    :string(255)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  picture        :string(255)
+#  picture_01     :string(255)
 #  view_times     :integer          default(0)
 #  author         :string(255)      default("读觅小编")
 #  category       :string(255)
+#  picture_02     :string(255)
+#  picture_03     :string(255)
+#  flag           :string(255)      default("rich")
+#  address        :text(65535)
+#  contact        :text(65535)
 #
 
 require 'rails_helper'

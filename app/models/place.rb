@@ -10,10 +10,15 @@
 #  description    :string(255)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  picture        :string(255)
+#  picture_01     :string(255)
 #  view_times     :integer          default(0)
 #  author         :string(255)      default("读觅小编")
 #  category       :string(255)
+#  picture_02     :string(255)
+#  picture_03     :string(255)
+#  flag           :string(255)      default("rich")
+#  address        :text(65535)
+#  contact        :text(65535)
 #
 
 require 'carrierwave/orm/activerecord'
@@ -30,8 +35,8 @@ class Place < ActiveRecord::Base
 
   validates_presence_of :name, message: "请填写读觅地点名字"
   # validates_presence_of :picture_01, message: "请上传读觅图片01"
-  validates_presence_of :longitude, message: "请点击地图来填写坐标"
-  validates_presence_of :latitude, message: ""
+  # validates_presence_of :longitude, message: "请点击地图来填写坐标"
+  # validates_presence_of :latitude, message: ""
   validates_inclusion_of :category, in: CATEGORY_TYPES
 
   after_destroy :delete_its_relative_res
