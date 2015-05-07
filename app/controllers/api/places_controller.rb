@@ -60,6 +60,12 @@ class Api::PlacesController < Lina::ApplicationController
         },
         created_at: {
           type: 'string'
+        },
+        address: {
+          type: 'string'
+        },
+        contact: {
+          type: 'string'
         }
       }
     }
@@ -141,29 +147,76 @@ class Api::PlacesController < Lina::ApplicationController
       required: [ :created ],
       properties: {
         created: {
-          type: 'boolean'
+          type: 'boolean',
+        },
+
+        status: {
+          type: 'string'
         }
       }
     }
     } do
-      # render json: { type: params.to_s }
+      # # render json: { type: params.to_s }
       if Place.new(place_params).save
         render json: { created: true, status: "200" }
       else
         render json: { created: false, status: "400" }
       end
-      # begin
-      #   place = Place.new(place_params)
-      # rescue Lina::ParamsCheckError
-      #   render json: { created: false, status: 400 }        
-      # end
-
 
     end
+
+  define_action :upload, {
+    name: '上传一个简单地点',
+    params: {
+      type: 'object',
+      required: [ :name, :description ],
+      properties: {
+        name: {
+          type: 'string'
+        },
+
+        description: {
+          type: 'string'
+        },
+
+        picture_01: {
+          type: 'object'
+        }
+      }      
+    },
+    return: {
+      name: "返回新建结果",
+      params: {
+        created: {
+          type: 'string'
+        },
+
+        status: {
+          type: 'string'
+        }
+      }
+    }
+    } do 
+      if simple_place_params[:name] && simple_place_params[:description]
+        if Place.new(simple_place_params).save
+          render json: { created: true, status: "200" }
+        else
+          render json: { created: false, status: "400" }
+        end
+      else
+        render json: { created: false, status: "400" }
+      end
+  end
 
   private
   def place_params
     params.permit(:name, :latitude, :longitude, :business_hours, 
         :description, :author, :category, :picture_01, :picture_02, :picture_03)
   end
+
+  def simple_place_params
+    params.permit(:name, :description, :picture_01).merge({ flag: 'simple', category: "其他" })
+  end
+
+
 end

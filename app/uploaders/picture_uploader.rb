@@ -26,7 +26,7 @@ class PictureUploader < CarrierWave::Uploader::Base
     # elsif ENV['CENTOS']
     # end
     # ip + base_url
-    "http://www.zhangxinxu.com/study/201109/uploads/library.jpeg"
+    'http://7xiwsa.com2.z0.glb.qiniucdn.com/uploads%2Flibrary.png?e=1430997501&token=oDzI0sgiK40RaXTm_fne0yIgNvFZajLpwmmCSJe_:8vttC164BawEVd2hgPRd_8QYggE='
   end
 
   # Process files as they are uploaded:
