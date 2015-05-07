@@ -144,7 +144,7 @@ class Api::PlacesController < Lina::ApplicationController
     return: {
       name: "反馈新建结果",
       type: 'object',
-      required: [ :created ],
+      required: [ :created, :status ],
       properties: {
         created: {
           type: 'boolean',
@@ -186,7 +186,9 @@ class Api::PlacesController < Lina::ApplicationController
     },
     return: {
       name: "返回新建结果",
-      params: {
+      type: 'object',
+      required: [ :created, :status ],
+      properties: {
         created: {
           type: 'string'
         },
