@@ -19,8 +19,14 @@ class PictureUploader < CarrierWave::Uploader::Base
   #   # For Rails 3.1+ asset pipeline compatibility:
   #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
   #
-    # "/images/fallback/" + [version_name, "default.png"].compact.join('_')
-    "/images/place_example.png"
+    # base_url = "/images/place_example.png"
+    # ip = 'http://localhost:1234'
+    # if ENV['ALIYUN_FOCI']
+    #   ip = Settings.aliyun_foci_ip
+    # elsif ENV['CENTOS']
+    # end
+    # ip + base_url
+    "http://www.zhangxinxu.com/study/201109/uploads/library.jpeg"
   end
 
   # Process files as they are uploaded:

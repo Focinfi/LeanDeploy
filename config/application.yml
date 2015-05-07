@@ -11,3 +11,4 @@ test:
 
 production:
   <<: *defaults
+  aliyun_foci_ip: http://42.96.137.114:1234
