@@ -13,7 +13,7 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 set :user, 'vagrant'
 set :domain, '192.168.33.10'
 set :deploy_to, '/var/www/dumi'
-set :repository, 'git://Focinfi@bitbucket.org/Focinfi/dumiserver.git'
+set :repository, 'https://Focinfi@bitbucket.org/Focinfi/dumiserver.git'
 set :branch, 'learn_deploy'
 set :forward_agent, true
 set :app_path, lambda { "#{deploy_to}/#{current_path}" }
