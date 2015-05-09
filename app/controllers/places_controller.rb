@@ -22,11 +22,11 @@ class PlacesController < ApplicationController
     @html_desc =  @place.build_html_desc(html_doc: params[:html_doc])
     if @place.save
       unless @html_desc.save
-        redirect_to edit_place_html_desc_path(@html_desc)
+        rendr :new
         return
       end
 
-      redirect_to @place, notice: "新建成功"
+      redirect_to edit_html_desc_path(@html_desc), notice: "新建成功"
     else
       render :new
     end
