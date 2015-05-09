@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-PUMA_CONFIG_FILE=/var/www/Deploy/current/config/puma.rb
-PUMA_PID_FILE=/var/www/Deploy/shared/tmp/pids/puma.pid
-PUMA_SOCKET=/var/www/Deploy/shared/tmp/sockets/puma.sock
+PUMA_CONFIG_FILE=/var/www/dumi/current/config/puma.rb
+PUMA_PID_FILE=/var/www/dumi/shared/tmp/pids/puma.pid
+PUMA_SOCKET=/var/www/dumi/shared/tmp/sockets/puma.sock
 
 # check if puma process is running
 puma_is_running() {

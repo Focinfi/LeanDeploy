@@ -11,7 +11,7 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :user, 'vagrant'
-set :domain, '192.168.33.10'
+set :domain, '127.0.0.1:2200'
 set :deploy_to, '/var/www/dumi'
 set :repository, 'git://Focinfi@bitbucket.org/Focinfi/dumiserver.git'
 set :branch, 'learn_deploy'
