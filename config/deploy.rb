@@ -11,14 +11,14 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :user, 'vagrant'
-set :domain, '127.0.0.1:2200'
+set :domain, '192.168.33.10'
 set :deploy_to, '/var/www/dumi'
 set :repository, 'git://Focinfi@bitbucket.org/Focinfi/dumiserver.git'
 set :branch, 'learn_deploy'
 set :forward_agent, true
 set :app_path, lambda { "#{deploy_to}/#{current_path}" }
 set :stage, 'production'
-set :rvm_path, '~/.rvm/bin/rvm'
+set :rvm_path, '/home/vagrant/.rvm/bin/rvm'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
@@ -37,7 +37,7 @@ task :environment do
   # invoke :'rbenv:load'
 
   # For those using RVM, use this to load an RVM version@gemset.
-  invoke :'rvm:use[2.1.4@default]'
+  invoke :'rvm:use[ruby-2.1.4@default]'
 end
 
 # mkdir shared/tmp
@@ -60,11 +60,11 @@ task :setup => :environment do
   queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/log"]
   queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp/log"] 
   
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/log/stout"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp/stdout"] 
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/log/stdout"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp/log/stdout"] 
   
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/stderr"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp/stder"] 
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/log/stderr"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp/log/stderr"] 
    
   queue! %[touch "#{deploy_to}/#{shared_path}/config/database.yml"]
   queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml'."]
