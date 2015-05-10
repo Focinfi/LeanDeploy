@@ -79,7 +79,7 @@ task :deploy => :environment do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
-    invoke :'rails:db_create'
+    queue! 'bundle exec rake db:create'
     invoke :'rails:db_migrate'
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
@@ -89,6 +89,13 @@ task :deploy => :environment do
       queue "touch -p #{deploy_to}/#{shared_path}/tmp/sockets/puma.sock"
       queue "touch #{deploy_to}/#{shared_path}/tmp/pids/puma.pid"
     end
+  end
+end
+
+namespace :rake do
+  desc "create production database" 
+  task :db_create do
+    queue! 'rake db:create'
   end
 end
 
