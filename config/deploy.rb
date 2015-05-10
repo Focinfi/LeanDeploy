@@ -81,13 +81,17 @@ task :deploy => :environment do
     invoke :'bundle:install'
     queue! "cd #{app_path} & RAILS_ENV=#{stage} bundle exec rake db:create"
     invoke :'rails:db_migrate'
+    queue! "cd #{app_path} & RAILS_ENV=#{stage} bundle exec rake db:seed"
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
+    queue! 'rm -f #{deploy_to}/#{shared_path}/tmp/sockets/puma.sock'
+    queue! 'rm -f #{deploy_to}/#{shared_path}/tmp/pids/puma.pid'
+    queue! %[touch "#{deploy_to}/#{shared_path}/tmp/sockets/puma.sock"]
+    queue! %[touch "#{deploy_to}/#{shared_path}/tmp/pids/puma.pid"]
+    # invoke :'puma:restart'
+    queue! 'cd #{app_path} & bundle exec puma -C config/puma.rb -e production'
 
     to :launch do
-      invoke :'puma:restart'
-      queue! %[touch "#{deploy_to}/#{shared_path}/tmp/sockets/puma.sock"]
-      queue! %[touch "#{deploy_to}/#{shared_path}/tmp/pids/puma.pid"]
     end
   end
 end
