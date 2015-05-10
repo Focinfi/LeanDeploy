@@ -86,8 +86,8 @@ task :deploy => :environment do
 
     to :launch do
       invoke :'puma:restart'
-      queue "touch -p #{deploy_to}/#{shared_path}/tmp/sockets/puma.sock"
-      queue "touch #{deploy_to}/#{shared_path}/tmp/pids/puma.pid"
+      queue! %[touch "#{deploy_to}/#{shared_path}/tmp/sockets/puma.sock"]
+      queue! %[touch "#{deploy_to}/#{shared_path}/tmp/pids/puma.pid"]
     end
   end
 end
