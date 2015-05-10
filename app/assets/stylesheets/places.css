@@ -1,4 +1,5 @@
-/* =require bootstrap_and_overrides */
+/* =require bootstrap */
+/* =require bootstrap-responsive */
 
 /* Input */
 .input-group {

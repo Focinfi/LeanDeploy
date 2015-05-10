@@ -21,19 +21,18 @@ module Dumi
     # config.i18n.default_locale = :de
 
     config.assets.precompile += %w{ 
-                                 bootstrap.js.coffee         
                                  html_desc.js        
                                  places.js 
                                  html_desc.css
-                                 bootstrap_and_overrides.css.less 
                                  places.css 
                                  amap.js        
                                  hotkeys.js     
                                  mobilecheck.js 
                                  module.js      
                                  simditor.js    
-                                 uploader.js
                                  simditor.css
+                                 require bootstrap
+                                 bootstrap-responsive
                              }
     
     # config.assets.compile = true
