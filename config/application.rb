@@ -33,6 +33,7 @@ module Dumi
                                  simditor.css
                                  bootstrap.min.css
                                  bootstrap-responsive.min.css
+                                 bootstrap.min.js
                              }
     
     # config.assets.compile = true
