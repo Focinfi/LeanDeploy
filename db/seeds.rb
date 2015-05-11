@@ -7,19 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 require "ffaker"
-# Table name: places
-#
-#  id             :integer          not null, primary key
-#  name           :string(255)
-#  latitude       :float(24)
-#  longitude      :float(24)
-#  business_hours :string(255)
-#  description    :string(255)
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  picture        :string(255)
-# book = Book.create({name: "C programming", author: "Mr. Zhang", isbn: "2319821983"})
-# book = Book.create({name: "D programming", author: "Mr. Zhang", isbn: "2332121983"})
 def category
   Place::CATEGORY_TYPES.fetch rand(5)
 end
