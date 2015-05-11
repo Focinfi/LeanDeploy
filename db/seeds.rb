@@ -43,7 +43,7 @@ if Place.count > 0
 
     # Image.create({ place_id: place.id, url: "place_example.png"})
   end
-
+end
 
 
 

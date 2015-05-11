@@ -27,6 +27,10 @@ case "$1" in
   start)
     echo "Starting puma..."
       rm -f $PUMA_SOCKET
+      touch -f $PUMA_SOCKET
+      chmod g+rx,u+rwx $PUMA_SOCKET
+      touch -f $PUMA_PID_FILE
+      chmod g+rx,u+rwx $PUMA_PID_FILE
       if [ -e $PUMA_CONFIG_FILE ] ; then
         bundle exec puma -C $PUMA_CONFIG_FILE
       else

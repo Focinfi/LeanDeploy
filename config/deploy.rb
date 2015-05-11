@@ -60,12 +60,6 @@ task :setup => :environment do
   queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/log"]
   queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp/log"] 
   
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/log/stdout"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp/log/stdout"] 
-  
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/log/stderr"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp/log/stderr"] 
-   
   queue! %[touch "#{deploy_to}/#{shared_path}/config/database.yml"]
   queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml'."]
 end
@@ -85,22 +79,8 @@ task :deploy => :environment do
     invoke :'rails:assets_precompile'
     invoke :'puma:restart'
     invoke :'deploy:cleanup'
-    # queue! 'rm -f #{deploy_to}/#{shared_path}/tmp/sockets/puma.sock'
-    # queue! 'rm -f #{deploy_to}/#{shared_path}/tmp/pids/puma.pid'
-    # queue! %[touch "#{deploy_to}/#{shared_path}/tmp/sockets/puma.sock"]
-    # queue! %[touch "#{deploy_to}/#{shared_path}/tmp/pids/puma.pid"]
-    # invoke :'puma:restart'
-    # queue! 'cd #{app_path} & bundle exec puma -C config/puma.rb -e production'
-
     to :launch do
     end
-  end
-end
-
-namespace :rake do
-  desc "create production database" 
-  task :db_create do
-    queue! 'rake db:create'
   end
 end
 
