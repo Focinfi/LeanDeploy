@@ -75,7 +75,6 @@ task :deploy => :environment do
     invoke :'bundle:install'
     queue! "cd #{app_path} & RAILS_ENV=#{stage} bundle exec rake db:create"
     invoke :'rails:db_migrate'
-    queue! "cd #{app_path} & RAILS_ENV=#{stage} bundle exec rake db:seed"
     invoke :'rails:assets_precompile'
     invoke :'puma:restart'
     invoke :'deploy:cleanup'
@@ -102,6 +101,17 @@ namespace :puma do
     queue 'echo "-----> Restart Puma"'
     queue "cd #{app_path} && RAILS_ENV=#{stage} && bin/puma.sh restart"
   end
+end
+
+desc "Shows logs."
+task :logs do
+  queue %[cd #{deploy_to!}/current && tail -f log/production.log]
+end
+
+desc "Display the unicorn logs."
+task :puma_logs do
+  queue 'echo "Contents of the puma log file are as follows:"'
+  queue "tail -f #{deploy_to}/#{shared_path}/tmp/log/stderr"
 end
 
 # For help in making your deploy script, see the Mina documentation:
