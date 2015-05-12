@@ -37,6 +37,7 @@ task :environment do
   # invoke :'rbenv:load'
 
   # For those using RVM, use this to load an RVM version@gemset.
+  queue! '/bin/bash --login'
   invoke :'rvm:use[ruby-2.1.4p265@default]'
 end
 
