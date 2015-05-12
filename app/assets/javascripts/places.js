@@ -1,3 +1,4 @@
+// = require bootstrap.min
 // = require amap
 (function() {
   function preview(file, index) {

@@ -21,19 +21,19 @@ module Dumi
     # config.i18n.default_locale = :de
 
     config.assets.precompile += %w{ 
-                                 bootstrap.js.coffee         
                                  html_desc.js        
                                  places.js 
                                  html_desc.css
-                                 bootstrap_and_overrides.css.less 
                                  places.css 
                                  amap.js        
                                  hotkeys.js     
                                  mobilecheck.js 
                                  module.js      
                                  simditor.js    
-                                 uploader.js
                                  simditor.css
+                                 bootstrap.min.css
+                                 bootstrap-responsive.min.css
+                                 bootstrap.min.js
                              }
     
     # config.assets.compile = true
@@ -54,7 +54,7 @@ module Dumi
         routing_specs: false,
         controller_specs: true,
         request_specs: false
-      g.fixture_replacement :fixture, dir: "spec/fixtures"
+      g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
   end
 end

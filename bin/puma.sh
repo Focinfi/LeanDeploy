@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-PUMA_CONFIG_FILE=/var/www/Deploy/current/config/puma.rb
-PUMA_PID_FILE=/var/www/Deploy/shared/tmp/pids/puma.pid
-PUMA_SOCKET=/var/www/Deploy/shared/tmp/sockets/puma.sock
+PUMA_CONFIG_FILE=/var/www/dumi/current/config/puma.rb
+PUMA_PID_FILE=/var/www/dumi/shared/tmp/pids/puma.pid
+PUMA_SOCKET=/var/www/dumi/shared/tmp/sockets/puma.sock
 
 # check if puma process is running
 puma_is_running() {
@@ -27,6 +27,10 @@ case "$1" in
   start)
     echo "Starting puma..."
       rm -f $PUMA_SOCKET
+      touch -f $PUMA_SOCKET
+      chmod g+rx,u+rwx $PUMA_SOCKET
+      touch -f $PUMA_PID_FILE
+      chmod g+rx,u+rwx $PUMA_PID_FILE
       if [ -e $PUMA_CONFIG_FILE ] ; then
         bundle exec puma -C $PUMA_CONFIG_FILE
       else

@@ -54,8 +54,7 @@ RSpec.describe Api::PlacesController, :type => :controller do
             description: "读书好地方",
             picture_01: File.open("#{Rails.root}/app/assets/images/library.png"))
       post :upload, place.attributes
-      expect(JSON.parse(response.body)["created"]).to eq true 
-      
+      expect(JSON.parse(response.body)["created"]).to eq true       
       place.delete
     end
   end

@@ -1,3 +1,4 @@
+// = require bootstrap.min
 // = require echo
 // = require mobilecheck
 // = require module

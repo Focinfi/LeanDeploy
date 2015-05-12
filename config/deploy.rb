@@ -10,19 +10,19 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 #   repository   - Git repo to clone from. (needed by mina/git)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
-set :user, 'foci'
-set :domain, 'dumi.com'
-set :deploy_to, '/var/www/dimi.com'
-set :repository, 'git://...'
-set :branch, 'master'
+set :user, 'deploy'
+set :domain, '42.96.137.114'
+set :deploy_to, '/var/www/dumi'
+set :repository, 'https://github.com/Focinfi/LeanDeploy.git'
+set :branch, 'test'
 set :forward_agent, true
 set :app_path, lambda { "#{deploy_to}/#{current_path}" }
 set :stage, 'production'
-set :rvm_path, '/home/foci/.rvm/bin/rvm'
+set :rvm_path, '/home/deploy/.rvm/bin/rvm'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
-set :shared_paths, ['config/database.yml', 'log']
+set :shared_paths, ['log']
 
 # Optional settings:
 #   set :user, 'foobar'    # Username in the server to SSH to.
@@ -37,7 +37,7 @@ task :environment do
   # invoke :'rbenv:load'
 
   # For those using RVM, use this to load an RVM version@gemset.
-  invoke :'rvm:use[ruby-2.0.0-p643@default]'
+  invoke :'rvm:use[ruby-2.1.4p265@default]'
 end
 
 # mkdir shared/tmp
@@ -58,16 +58,7 @@ task :setup => :environment do
   queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp/pids"] 
   
   queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/log"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp/log"] 
-  
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/log/stout"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp/stdout"] 
-  
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/stderr"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp/stder"] 
-   
-  queue! %[touch "#{deploy_to}/#{shared_path}/config/database.yml"]
-  queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml'."]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp/log"]   
 end
 
 desc "Deploys the current version to the server."
@@ -79,14 +70,13 @@ task :deploy => :environment do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
+    queue! "cd #{app_path} & RAILS_ENV=#{stage} bundle exec rake db:create"
     invoke :'rails:db_migrate'
+    queue! "cd #{app_path} & RAILS_ENV=#{stage} bundle exec rake db:seed"
     invoke :'rails:assets_precompile'
+    invoke :'puma:restart'
     invoke :'deploy:cleanup'
-
     to :launch do
-      invoke :'puma:restart'
-      queue "touch -p #{deploy_to}/#{shared_path}/tmp/sockets/puma.sock"
-      queue "touch #{deploy_to}/#{shared_path}/tmp/pids/puma.pid"
     end
   end
 end
@@ -109,6 +99,17 @@ namespace :puma do
     queue 'echo "-----> Restart Puma"'
     queue "cd #{app_path} && RAILS_ENV=#{stage} && bin/puma.sh restart"
   end
+end
+
+desc "Shows logs."
+task :logs do
+  queue %[cd #{deploy_to!}/current && tail -f log/production.log]
+end
+
+desc "Display the unicorn logs."
+task :puma_logs do
+  queue 'echo "Contents of the puma log file are as follows:"'
+  queue "tail -f #{deploy_to}/#{shared_path}/tmp/log/stderr"
 end
 
 # For help in making your deploy script, see the Mina documentation:

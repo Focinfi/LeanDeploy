@@ -217,7 +217,7 @@ class Api::PlacesController < Lina::ApplicationController
   end
 
   def simple_place_params
-    params.permit(:name, :description, :picture_01).merge({ flag: 'simple', category: "其他" })
+    params.permit(:name, :description, :picture_01).merge({ flag: 'recommended', category: "其他" })
   end
 
 
