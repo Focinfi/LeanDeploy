@@ -10,7 +10,7 @@ require "ffaker"
 def category
   Place::CATEGORY_TYPES.fetch rand(5)
 end
-if Place.count > 0
+if Place.count == 0
   50.times do
     place = Place.create({ name: FFaker::Name.name,
                    latitude: "32.1119",
@@ -21,8 +21,8 @@ if Place.count > 0
                    address: "南京 仙林",
                    contact: '183-1234-4321'
                 })
-    HtmlDesc.create({ place_id: place.id, 
-      html_doc: 
+    HtmlDesc.create({ place_id: place.id,
+      html_doc:
         "<h3>#{FFaker::Lorem.sentence}</h3>" +
         "<img src='http://7xiwsa.com2.z0.glb.qiniucdn.com/uploads%2Flibrary.png?e=1430997501&token=oDzI0sgiK40RaXTm_fne0yIgNvFZajLpwmmCSJe_:8vttC164BawEVd2hgPRd_8QYggE='>" +
         "<p>#{FFaker::Lorem.paragraph}</p>"
