@@ -1,9 +1,5 @@
-# change gem source in Linux server 
-if `uname` != "Linux"
-	source 'http://ruby.taobao.org'
-else
-	source 'https://rubygems.org'
-end
+source 'https://rubygems.org'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use mysql2 as the database for Active Record
@@ -35,10 +31,10 @@ gem 'bootstrap-will_paginate', '~> 0.0.10'
 # HTTP Reqeust
 gem 'rest-client', '~> 1.7.3'
 
-# App Server Puma 
+# App Server Puma
 gem 'puma'
 
-# Deployment Mina 
+# Deployment Mina
 gem 'mina', group: :development
 
 # Image Process
@@ -56,7 +52,7 @@ gem 'ffaker'
 # Config file
 gem "settingslogic"
 
-# API 
+# API
 gem 'lina'
 
 # Admin
@@ -67,7 +63,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
 
   gem 'factory_girl_rails', '~> 4.4.1'
-  
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
@@ -84,6 +80,6 @@ group :development, :test do
   gem 'quiet_assets'
 
   # Visit http://localhost:3000/rails/routes and you'll see an output similar to rake routes
-  gem 'sextant' 
+  gem 'sextant'
 end
 
